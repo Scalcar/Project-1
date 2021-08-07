@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product update</title>
+    <link rel="stylesheet" type="text/css" href="styles/productDetails.css">
+</head>
+<body onload="setProductDetails(), showUpdateDetailProduct()">
+    <a class="xed" href="products.html">X</a>
+    <p id="messageBarId"></p>
+    <h2>Product Update</h2>
+    <div id="productUpdate">
+        <table id="itemUpdate"></table>
+    </div>
+
+    <div id="inputId">
+        <input id="nameId" type="text" placeholder="name">
+        <input id="descriptionId" type="text" placeholder="description">
+        <input id="priceId" type="text" placeholder="price">
+        <input id="categoryId" type="text" placeholder="category">
+        <input id="isInStockId" type="text" placeholder="available">
+        <input id="imgUrl" type="text" placeholder="Links">
+    </div>
+    <button onclick="updateProduct()">Update</button>
+    <button onclick="changeUrl()">Change Link</Link></button>
+    
+    <footer>&copy; Vasi cel Bun 2021</footer>
+
+    <script src="script/user.js"></script>
+    <script src="script/product.js"></script>
+    <script src="script/productService.js"></script>
+    <script src="script/userService.js"></script>
+    <script src="script/commonService.js"></script>
+    <script src="script/httpService.js"></script>
+    <script src="script/script.js"></script>
+</body>
+</html>

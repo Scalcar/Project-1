@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+    text-align: center;
+}
+body {
+    border: 2px solid green;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px auto;
+    font-family: monospace;
+    font-size: 18px;
+    color: blue;
+    width: 600px;
+    min-height: 600px;
+}
+h2 {
+    text-align: center;
+    font-family: monospace;
+    clear: both;
+}
+.container {
+    border: 2px solid green;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    width: 400px;
+    margin: 10px auto;
+}
+input {
+    display: block;
+    padding: 6px;
+    margin: 15px 5px;
+    width: 100%;
+    border: 2px solid green;
+    border-radius: 5px;
+    color: #555;
+    outline: none;
+    font-family: monospace;
+    font-size: 15px;
+}
+input[type=text]:focus {
+    border: 2px solid blue;
+}
+input[type=password]:focus {
+    border: 2px solid blue;
+}
+button {
+    min-width: 100px;
+    min-height: 30px;
+    padding: 10px;
+    color:  blue;
+    margin: 10px;
+    border: 2px solid blue;
+    border-radius: 5px;
+    font-weight: bold;
+}
+button:hover {
+    background-color: lightgrey;
+    color: green;
+    font-weight: bold;
+}
+#messageBarId {
+    border: 1px solid green;
+    border-radius: 5px;
+    text-align: center;
+    color:#444;
+    min-height: 30px;
+    padding: 5px;
+}
+img {
+    object-fit:contain;
+    margin: 10px;
+}
+footer {
+    margin-top: 60px;
+}
+a {
+    float: right;
+    padding: 22px;
+    text-decoration: none;
+    color:blue;
+}
+a:hover {
+    color:tomato;
+}

@@ -1,0 +1,113 @@
+* {
+    box-sizing: border-box;
+    text-align: center;
+}
+body {
+    position: relative;
+    border: 2px solid green;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px auto;
+    font-family: monospace;
+    font-size: 18px;
+    color: blue;
+    width: 800px;
+    min-height: 550px;
+}
+h2 {
+    text-align: center;
+}
+#messageBarId {
+    border: 1px solid green;
+    border-radius: 5px;
+    text-align: center;
+    color:#444;
+    min-height: 30px;
+    padding: 10px;
+}
+.xed {
+    float: right;
+}
+a {
+    /* float: right; */
+    padding: 22px;
+    text-decoration: none;
+    color:blue;
+}
+a:hover {
+    color:tomato;
+}
+div {
+    border: 2px solid green;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px;
+}
+footer {
+    margin-top: 60px;
+}
+#productDetailId {
+    display: contents;
+}
+#image {
+    width: 350px;
+    margin: 10px auto;
+    display: contents;
+}
+#itemUpdate {
+    border-collapse: collapse;
+    width: 100%;
+}
+#itemUpdate td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+#itemUpdate tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+#itemUpdate tr:hover {
+    background-color: #ddd;
+}
+#inputId {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+input {
+    padding: 6px;
+    margin: 10px 5px;
+    width: 215px;
+    border: 2px solid green;
+    border-radius: 5px;
+    color: #333;
+    outline: none;
+    font-family: monospace;
+    font-size: 15px;
+}
+button {
+    min-width: 100px;
+    min-height: 30px;
+    padding: 10px;
+    color: #555;
+    background-color: honeydew;
+    margin: 20px 40px;
+    border: 2px solid green;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+button:hover {
+    background-color: lightgrey;
+    color: green;
+    font-weight: bold;
+}
+input[type=text]:focus {
+    border: 2px solid blue;
+}
+.checked {
+    color: orange;
+}
+.yellow-color {
+    color: orange;
+}

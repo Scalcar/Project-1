@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="styles/products.css">
+    <!-- CSS only -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+</head>
+<!-- aceste functii se apeleaza atunci cand se deschide pagina  -->
+<body onload="authorize(), showProducts(), refreshProducts()">
+    <a class="xed" href="index.html">X</a>
+    <p id="messageBarId"></p>
+    <button id="btnCountId">Favorite<span id="favCountID">0</span></button>
+    
+    
+    <button id="cartId">
+        <img src="assets/18414316_cart-free-png-shopping-cart-png-images-transparent.png" alt="shopping cart" width="18px" height="18px">Cart<span id="counter">0</span>
+    </button>
+    <button id="log" onclick="logOut()">LogOut</button>
+    <div id="cartList" class="cart clearFix">
+        <table id="cartTable"></table>
+        <button id="removeCartId" onclick="removeFromCart()">Remove</button>
+        <button id="resetCartId" onclick="resetCart()">Remove All</button>
+        <button id="buyBtn">Buy</button>
+        <p style="border: 1px solid #ddd; padding: 5px;">
+            <input type="text" id="promoCode" placeholder="Promotion Code here">
+            <button id="apply" onclick="applyPromoCode()">Apply Code</button>
+        </p>  
+    </div>
+    <div id="favListId" class="fav clearFix">
+        <table id="favTable"></table>
+        <button id="removeFavId" onclick="removeFromFavorites()">Remove</button>
+        <button id="resetFavId" onclick="resetFavorites()">Remove All</button>
+    </div>
+    
+    <h2>Products</h2>
+    <p style="display: flex;justify-content: space-evenly; align-items: center;">
+    <input type="text" id="searchId" placeholder="Search here..">
+    <button id="BtnSearch" onclick="searchForProducts()">Search</button>
+    </p>
+    <p style="display: flex;justify-content: space-evenly; align-items: center;">
+        <input type="text" id="searchId2" placeholder="From..">
+        <input type="text" id="searchId3" placeholder="To..">
+        <button id="BtnSearch" onclick="searchForProductsPrice()">Search</button>
+        </p>
+    <div class="container">
+        <p id="textModificat" class="text">There are <span id="listCountId">0</span> products available.</p>
+        <div id="productsListId">
+            <!-- aici o sa fie adaugate produsele -->
+        </div>
+    </div>
+
+    <footer>&copy; Vasi cel Bun 2021</footer>
+
+    <script src="script/user.js"></script>
+    <script src="script/product.js"></script>
+    <script src="script/userService.js"></script>
+    <script src="script/productService.js"></script>
+    <script src="script/commonService.js"></script>
+    <script src="script/httpService.js"></script>
+    <script src="script/script.js"></script>
+    <script>
+        const cart = document.getElementById('cartId');
+        cart.addEventListener("click", toggle => {
+            var element = document.getElementById('cartList');
+            if(element.style.display != 'none'){
+                element.style.display = 'none';
+            }else {
+                element.style.display = 'block';
+            }
+        })
+        const favorite = document.getElementById('btnCountId');
+        favorite.addEventListener("click", toggle => {
+            var div = document.getElementById('favListId');
+            if(div.style.display != 'none'){
+                div.style.display = 'none';
+            }else {
+                div.style.display = 'block';
+            }
+        })
+    </script>
+</body>
+</html>

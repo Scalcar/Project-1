@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" type="text/css" href="styles/profile.css">
+</head>
+<body onload="authorize(), showProfile()">
+    <a href="index.html">X</a>
+    <p id="messageBarId"></p>
+    
+    
+    <h2>Profile</h2>
+    <div class="container">
+        <table id="persons"></table>
+    </div>
+
+    <div class="container btns">
+        <button id="removeAccountId">Remove Account</button>
+        <button id="changePasswordId">Change Password</button>
+        <button onclick="logOut()">LogOut</button>
+    </div>
+    <div id="toggle1">
+        <input id="email" type="text" placeholder="User Name">
+        <button onclick="removeUser()">Remove</button>
+    </div>
+    <div id="toggle2">
+        <input id="userName" type="text" placeholder="User Name">
+        <input id="passwordIdNew" type="password" placeholder="New password">
+        <button onclick="changePassword()">Change</button>
+    </div>
+    
+
+    <footer>&copy; Vasi cel Bun 2021</footer>
+    
+    <script src="script/user.js"></script>
+    <script src="script/product.js"></script>
+    <script src="script/productService.js"></script>
+    <script src="script/userService.js"></script>
+    <script src="script/commonService.js"></script>
+    <script src="script/httpService.js"></script>
+    <script src="script/events.js"></script>
+    <script src="script/script.js"></script>
+</body>
+</html>

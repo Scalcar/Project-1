@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+    text-align: center;
+}
+body {
+    position: relative;
+    border: 2px solid green;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px auto;
+    font-family: monospace;
+    font-size: 18px;
+    color: blue;
+    width: 800px;
+    min-height: 550px;
+}
+h2 {
+    text-align: center;
+}
+#messageBarId {
+    border: 1px solid green;
+    border-radius: 5px;
+    text-align: center;
+    color:#444;
+    min-height: 30px;
+    padding: 10px;
+}
+a {
+    float: right;
+    padding: 22px;
+    text-decoration: none;
+    color:blue;
+}
+a:hover {
+    color:tomato;
+}
+div {
+    border: 2px solid green;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px;
+}
+#persons {
+    border-collapse: collapse;
+    width: 100%;
+}
+#persons td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+#persons tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+#persons tr:hover {
+    background-color: #ddd;
+}
+footer {
+    margin-top: 60px;
+}
+.btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border: 1px solid green;
+    width: auto;
+}
+button {
+    min-width: 100px;
+    min-height: 30px;
+    padding: 10px;
+    color: #555;
+    background-color: honeydew;
+    border: 2px solid green;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+button:hover {
+    background-color: lightgrey;
+    color: green;
+    font-weight: bold;
+}
+input {
+    display: block;
+    padding: 6px;
+    margin: 15px 5px;
+    width: 100%;
+    border: 2px solid green;
+    border-radius: 5px;
+    color: #555;
+    outline: none;
+    font-family: monospace;
+    font-size: 15px;
+}
+input[type=text]:focus {
+    border: 2px solid blue;
+}
+input[type=password]:focus {
+    border: 2px solid blue;
+}
+#toggle1 {
+    display: none;
+}
+#toggle2 {
+    display: none;
+}
