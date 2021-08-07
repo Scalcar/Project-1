@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product update</title>
     <link rel="stylesheet" type="text/css" href="styles/productDetails.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body onload="setProductDetails(), showUpdateDetailProduct()">
     <a class="xed" href="products.html">X</a>
@@ -19,9 +20,8 @@
         <input id="nameId" type="text" placeholder="name">
         <input id="descriptionId" type="text" placeholder="description">
         <input id="priceId" type="text" placeholder="price">
-        <input id="categoryId" type="text" placeholder="category">
-        <input id="isInStockId" type="text" placeholder="available">
-        <input id="imgUrl" type="text" placeholder="Links">
+        <input id="discountPriceId" type="text" placeholder="discountPrice">
+        <input id="productUrlId" type="text" placeholder="productUrl">
     </div>
     <button onclick="updateProduct()">Update</button>
     <button onclick="changeUrl()">Change Link</Link></button>

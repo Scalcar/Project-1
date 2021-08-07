@@ -11,9 +11,11 @@ class ProductService { // var productService = new ProductService();
             //pentru fiecare produs construieste urmatorul html
             concatenatedProducts += `
             <div>
+                <p><img src="${product.productUrl}" style="width:100px;height:100px;></p>
                 <p>${product.name}</p>
                 <p>${product.description}</p>
-                <p>${product.price}</p>
+                <p><del>${product.price}</del></p>
+                <p>${product.discountPrice}</p>
                 <button onclick="removeProduct(${product.id})">Remove</button>
                 <button onclick ="openProduct(${product.id})">Show Details</button>
                 <button onclick ="updateProductById(${product.id})">Update</button>
@@ -30,7 +32,9 @@ class ProductService { // var productService = new ProductService();
             <div>
                 <h3>Name: ${product.name}</h3>
                 <p>Description: "${product.description}"</p>
-                <p>Price: ${product.price} lei</p>
+                <p><del>${product.price}</del> lei</p>
+                <p>${product.discountPrice} lei</p>
+                <p>${product.productUrl}</p>
                 ${this.getNumberOfStars(product)}
             </div>`; 
         }

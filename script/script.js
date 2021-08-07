@@ -125,9 +125,11 @@ function updateProduct() {
    let name = document.getElementById('nameId').value;
    let description = document.getElementById('descriptionId').value;
    let price = document.getElementById('priceId').value;
+   let discountPrice = $("#discountPriceId").val();
+   let productUrl = $("#productUrlId").val();
    let productId = window.localStorage.getItem('updateProductId');
 
-   let product = {"id": Number(productId), "name": name, "description": description, "price": price};
+   let product = {"id": Number(productId), "name": name, "description": description, "price": price, "discountPrice": discountPrice, "productUrl": productUrl};
 
    httpService.updateProduct(product);
 }
