@@ -11,7 +11,7 @@ class ProductService { // var productService = new ProductService();
             //pentru fiecare produs construieste urmatorul html
             concatenatedProducts += `
             <div>
-                <p><img src="${product.productUrl}" style="width:100px;height:100px;></p>
+                <p><img src="${product.productUrl}" style="width:100px;height:100px;" onclick="openProduct(${product.id})" /></p>
                 <p>${product.name}</p>
                 <p>${product.description}</p>
                 <p><del>${product.price}</del></p>
@@ -34,10 +34,21 @@ class ProductService { // var productService = new ProductService();
                 <p>Description: "${product.description}"</p>
                 <p><del>${product.price}</del> lei</p>
                 <p>${product.discountPrice} lei</p>
-                <p>${product.productUrl}</p>
+                <img src ="${product.productUrl}" style="width:100px; height:100px;" />
                 ${this.getNumberOfStars(product)}
             </div>`; 
         }
+    }
+
+    getReviews(product){
+        let reviews = "";
+        product.reviews.forEach(review => {
+            reviews += `
+                <h4>${review.title}</h4>
+                <p>${review.description}</p>
+            `;
+        })
+        return reviews;
     }
       
     getNumberOfStars(product) {
@@ -80,8 +91,12 @@ class ProductService { // var productService = new ProductService();
             </tr>
             <tr>
                 <td>Price:</td>
-                <td>${product.price}</td>
-            </tr>`
+                <td><del>${product.price}</del></td>
+            </tr>
+            <tr>
+                <td>Discount Price:</td>
+                <td>${product.discountPrice}</td>
+            </tr>`;
         }
     }
 
@@ -157,17 +172,6 @@ class ProductService { // var productService = new ProductService();
         return favorites;
     }
 
-    addImageToProduct(id, imgUrl) { // incercat ceva
-        let product = this.findProduct(id);
-        if (product) {
-            product.imgUrl = imgUrl;
-            this.updateStorage();
-            return `You set a new image for product ${product.name}`;
-        } else {
-            return this.productNotFoundMsg;
-        }
-    }
-
     showProductsByName(query, products) {
         let response = {
             list: '',
@@ -206,14 +210,19 @@ class ProductService { // var productService = new ProductService();
             list: '',
             count: 0
         }
-        let filteredProducts = products.filter(product => product.price >= from && product.price <= to);
+        let filteredProducts = products.filter(product => {
+            product.price >= Number(from ? from : 0) && 
+            product.price <= Number(to ? to : 99999)
+        });
         response.count = filteredProducts.length;
         filteredProducts.forEach(item => {
             response.list += `
                 <div>
+                    <img onclick="openProduct(${product.id})" class="w-100" src="${product.productUrl}"/>
                     <p>${item.name}</p>
                     <p>${item.description}</p>
-                    <p>${item.price}</p>
+                    <p><del>${item.price}</del></p>
+                    <p>${item.discountPrice}</p>
                     <button onclick="removeProduct(${item.id})">Remove</button>
                     <button onclick ="openProduct(${item.id})">Show Details</button>
                     <button onclick ="updateProductById(${item.id})">Update</button>

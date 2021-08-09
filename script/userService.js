@@ -37,27 +37,27 @@ class UserService{
         return response;
     }
    
-    getFormatedProfileDetail(userName){ // fixed
-        var userResponse = this.getUserByUserName(userName);
-        if(userResponse.user){
+    getFormatedProfileDetail(profile){ // fixed
+        if(profile){
             //returneaza stringul
            return `
             <tr>
                 <td>Name:</td>
-                <td>${userResponse.user.name}</td>
+                <td>${profile.name}</td>
             </tr>
             <tr>
                 <td>Email:</td>
-                <td>${userResponse.user.userName}</td>
+                <td>${profile.email}</td>
             </tr>
             <tr>
-                <td>Password:</td>
-                <td>${userResponse.user.password}</td>
-            </tr>`
-        }else{
-            //returneaza mesajul de eroare utilizatorul nu exista
-            return userResponse;
-        }
+                <td>Age:</td>
+                <td>${profile.age}</td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td>${profile.gender}</td>
+            </tr>`;
+        }    
     }
 
     changePassword(userName, newPassword){
