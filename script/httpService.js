@@ -2,23 +2,9 @@ class HttpService {
     commonService = new CommonService();
     productService = new ProductService();
 
-    register(email, password){
-        //adaugam header
-        let myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        //adaugam body
-        let bodyJson = JSON.stringify({"email": email, "password": password});
-
-        //adaugam requestOptions
-        let requestOption = {
-            method: 'POST',
-            headers: myHeaders,
-            body: bodyJson
-        };
-
+    register(profile){       
         //facel call-ul catre backend
-        fetch("https://ilbahtraining.azurewebsites.net/register", requestOption)
+        fetch("https://ilbahtraining.azurewebsites.net/register", this.getHeaderWithTokenAndBody(profile, 'POST'))
         .then(response => response.text())
         .then(token => {
             window.localStorage.setItem('token', token);
@@ -64,80 +50,34 @@ class HttpService {
 
     }
 
-    addProduct(name, description, price){
-        let token = window.localStorage.getItem('token');
-        let myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("token", token);
+    addProduct(name, description, price, discountPrice, productUrl){
+        let body = {"name": name, "description": description, "price": price, "discountPrice": discountPrice, "productUrl": productUrl };
 
-        let bodyJson = JSON.stringify({"name": name, "description": description, "price": price});
-
-        let requestOption = {
-            method: 'POST',
-            headers: myHeaders,
-            body: bodyJson
-        };
-
-        fetch("https://ilbahtraining.azurewebsites.net/api/Product", requestOption)
+        fetch("https://ilbahtraining.azurewebsites.net/api/Product", this.getHeaderWithTokenAndBody(body, 'POST'))
         .then(response => response.text())
         .then(result => {
             commonService.showInfoMessage(result);
+            window.setTimeout( function() {
+                window.location.href = 'products.html'
+            }, 1500);
         })
         .catch(error => {
             commonService.showInfoMessage(error);
         })
     }
 
-    getProducts(){
-        let token = window.localStorage.getItem('token');
-        let myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("token", token);
-
-        let requestOption = {
-            method: 'GET',
-            headers: myHeaders
-        }
-
-        return fetch("https://ilbahtraining.azurewebsites.net/api/Product", requestOption)
+    getProducts(){       
+        return fetch("https://ilbahtraining.azurewebsites.net/api/Product", this.getHeaderWithToken('GET'))
         .then(response => response.json())
-        // .then(products => {
-        //     let formatedProducts = productService.getFormatedProducts(products);
-        //     document.getElementById('productsListId').innerHTML = formatedProducts;
-        // })
-        // .catch(error => {
-        //     commonService.showInfoMessage(error);
-        // })
     }
 
-    getProductbyId(id){
-        let token = window.localStorage.getItem('token');
-        let myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("token", token);
-
-        let requestOption = {
-            method: 'GET',
-            headers: myHeaders
-        }
-
-        return fetch(`https://ilbahtraining.azurewebsites.net/api/Product/${id}`, requestOption)
+    getProductbyId(id){        
+        return fetch(`https://ilbahtraining.azurewebsites.net/api/Product/${id}`, this.getHeaderWithToken('GET'))
         .then(response => response.json())
     }
 
     updateProduct(product){
-        let token = window.localStorage.getItem('token');
-        let myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("token", token);
-
-        let requestOption = {
-            method: 'PUT',
-            headers: myHeaders,
-            body: JSON.stringify(product)
-        }
-
-        fetch("https://ilbahtraining.azurewebsites.net/api/Product", requestOption)
+        fetch("https://ilbahtraining.azurewebsites.net/api/Product", this.getHeaderWithTokenAndBody(product, 'PUT'))
         .then(response => response.text())
         .then(result => {
             commonService.showInfoMessage(result);
@@ -151,18 +91,7 @@ class HttpService {
     }
 
     deleteProductById(id){
-        let token = localStorage.getItem('token');
-
-        let myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("token", token);
-
-        let requestOption = {
-            method: 'POST',
-            headers: myHeaders
-        };
-
-        fetch(`https://ilbahtraining.azurewebsites.net/api/Product/${id}`, requestOption)
+        fetch(`https://ilbahtraining.azurewebsites.net/api/Product/${id}`, this.getHeaderWithToken('POST'))
         .then(response => response.text())
         .then(result => {
             commonService.showInfoMessage(result);
@@ -172,22 +101,57 @@ class HttpService {
         });
     }
 
-    addRating(productId, rating){
+    addRating(productId, rating){       
+        //`https://ilbahtraining.azurewebsites.net/api/rating?productId=17&rating=5`
+        fetch(`https://ilbahtraining.azurewebsites.net/api/rating?productId=${productId}&rating=${rating}`, this.getHeaderWithToken('POST'))
+        .then(response => response.text())
+        .then(result => {
+            commonService.showInfoMessage(result);
+        })
+        .catch(error => {
+            commonService.showInfoMessage(error);
+        });
+    }
+
+    getProfile(){
+        return fetch(`https://ilbahtraining.azurewebsites.net/profile`, this.getHeaderWithToken('GET'))
+        .then(response => response.json())
+    }
+
+    getHeaderWithTokenAndBody(body, method){
         let token = localStorage.getItem('token');
 
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("token", token);
 
-        let requestOption = {
-            method: 'POST',
-            headers: myHeaders
+        return {
+            method: method,
+            headers: myHeaders,
+            body: JSON.stringify(body)
         };
-        //`https://ilbahtraining.azurewebsites.net/api/rating?productId=17&rating=5`
-        fetch(`https://ilbahtraining.azurewebsites.net/api/rating?productId=${productId}&rating=${rating}`, requestOption)
+    }
+    getHeaderWithToken(method){
+        let token = localStorage.getItem('token');
+
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("token", token);
+
+        return {
+            method: method,
+            headers: myHeaders,
+        };
+    }
+
+    addReview(title, description, productId){
+        let body = {"title": title, "description": description};
+
+        fetch(`https://ilbahtraining.azurewebsites.net/api/review?id=${productId}`, this.getHeaderWithTokenAndBody(body, "POST"))
         .then(response => response.text())
         .then(result => {
             commonService.showInfoMessage(result);
+            location.reload();
         })
         .catch(error => {
             commonService.showInfoMessage(error);
